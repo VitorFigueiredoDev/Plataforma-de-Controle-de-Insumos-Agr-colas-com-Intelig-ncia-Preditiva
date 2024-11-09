@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mercado - Sistema de Monitoramento Agrícola</title>
+    
+    <!-- Links para Bibliotecas Externas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.0/Recharts.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+        <header class="header">
+            <div class="header-content">
+                <!-- Informações Gerais -->
+                <div>
+                    <h1>Sistema de Monitoramento Agrícola</h1>
+                    <p>Análise e Recomendações para Manejo do Solo</p>
+                </div>
+                <!-- Informações de Localização e Clima -->
+                <div class="location-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Uberaba, MG</p>
+                    <p><i class="fas fa-thermometer-half"></i> 25°C</p>
+                    <p><i class="fas fa-cloud-rain"></i> 30% prob. chuva</p>
+                    <p class="clock"><i class="fas fa-clock"></i> <span id="clock"></span></p>
+                </div>
+            </div>
+            
+            <!-- Informações da Cultura com Botão de Voltar -->
+            <div class="crop-info">
+                <div class="crop-info-item">
+                    <h3>Cultura</h3>
+                    <p><i class="fas fa-seedling"></i> Milho</p>
+                </div>
+                <div class="crop-info-item">
+                    <h3>Fase</h3>
+                    <p><i class="fas fa-leaf"></i> Desenvolvimento Vegetativo</p>
+                </div>
+                <div class="crop-info-item">
+                    <h3>Área Total</h3>
+                    <p><i class="fas fa-chart-area"></i> 150 hectares</p>
+                </div>
+                <div class="crop-info-item">
+                    <h3>Dias até colheita</h3>
+                    <p><i class="fas fa-clock"></i> 75 dias</p>
+                </div>
+                <div class="nav-buttons">
+                    <a href="index.html" class="nav-button">
+                        <i class="fas fa-arrow-left"></i>
+                        Voltar ao Dashboard
+                    </a>
+                </div>
+            </div>
+        </header>
+
+        <!-- Conteúdo Principal do Mercado -->
+        <div class="market-content">
+            <div id="market-root"></div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+    <script src="market-dashboard.js"></script>
+</body>
+
+</html>

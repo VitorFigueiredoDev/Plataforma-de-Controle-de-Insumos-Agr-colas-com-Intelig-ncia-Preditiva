@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Monitoramento Agrícola</title>
+    
+    <!-- Links para Bibliotecas Externas -->
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react/18.2.0/umd/react.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/react-dom/18.2.0/umd/react-dom.production.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/recharts/2.12.0/Recharts.js"></script>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="Styles.css">
+</head>
+
+<body>
+    <div class="container">
+        <!-- Cabeçalho -->
+
+        <div class="logo-and-title">
+            <img src="Uniube2.png" alt="Logo Uniube" class="logo">
+            <div>
+        <div>
+
+        <header class="header">
+            <div class="header-content">
+                <!-- Informações Gerais -->
+                <div>
+                    <h1>Sistema de Monitoramento Agrícola</h1>
+                    <p>Análise e Recomendações para Manejo do Solo</p>
+                </div>
+                <!-- Informações de Localização e Clima -->
+                <div class="location-info">
+                    <p><i class="fas fa-map-marker-alt"></i> Uberaba, MG</p>
+                    <p><i class="fas fa-thermometer-half"></i> 25°C</p>
+                    <p><i class="fas fa-cloud-rain"></i> 30% prob. chuva</p>
+                    <p class="clock"><i class="fas fa-clock"></i> <span id="clock"></span></p>
+                </div>
+            </div>
+            
+            <!-- Modifique a div crop-info no index.html -->
+<div class="crop-info">
+    <div class="crop-info-item">
+        <h3>Cultura</h3>
+        <p><i class="fas fa-seedling"></i> Milho</p>
+    </div>
+    <div class="crop-info-item">
+        <h3>Fase</h3>
+        <p><i class="fas fa-leaf"></i> Desenvolvimento Vegetativo</p>
+    </div>
+    <div class="crop-info-item">
+        <h3>Área Total</h3>
+        <p><i class="fas fa-chart-area"></i> 150 hectares</p>
+    </div>
+    <div class="crop-info-item">
+        <h3>Dias até colheita</h3>
+        <p><i class="fas fa-clock"></i> 75 dias</p>
+    </div>
+    <div class="nav-buttons">
+        <a href="market.html" class="nav-button">
+            <i class="fas fa-chart-line"></i>
+            Dashboard de Mercado
+        </a>
+    </div>
+</div>
+        </header>
+
+        <!-- Dashboard -->
+        <div class="dashboard">
+            <!-- Indicadores Atuais -->
+            <div class="card indicadores">
+                <h2><i class="fas fa-chart-line"></i> Indicadores Atuais</h2>
+                <div class="indicador">
+                    <h3><i class="fas fa-flask"></i> Solo</h3>
+                    <div class="alert-indicator"><i class="fas fa-exclamation-triangle"></i></div>
+                    <p>pH <span class="warning" id="ph">5.2</span></p>
+                    <div class="ideal-range">Ideal: 6.0 - 6.8</div>
+                    <p>Umidade <span id="umidade">65</span>%</p>
+                    <p>Nitrogênio <span class="warning" id="nitrogenio">35</span>%</p>
+                    <div class="ideal-range">Ideal: > 50%</div>
+                    <p>Fósforo <span id="fosforo">45</span>%</p>
+                    <p>Potássio <span id="potassio">80</span>%</p>
+                </div>
+                <div class="indicador">
+                    <h3><i class="fas fa-cloud-sun"></i> Clima</h3>
+                    <p>Temperatura <span id="temperatura">25</span>°C</p>
+                    <p>Umidade do Ar <span id="umidadeAr">65</span>%</p>
+                    <p>Prob. de Chuva <span id="probChuva">30</span>%</p>
+                </div>
+            </div>
+
+            <!-- Gráficos -->
+            <div class="card grafico-umidade">
+                <h2><i class="fas fa-tint"></i> Histórico de Umidade do Solo</h2>
+                <div class="grafico-container">
+                    <canvas id="graficoUmidade"></canvas>
+                </div>
+            </div>
+
+            <div class="card grafico-previsao">
+                <h2><i class="fas fa-calendar-alt"></i> Previsão para Próximos Dias</h2>
+                <div class="grafico-container">
+                    <canvas id="graficoPrevisao"></canvas>
+                </div>
+            </div>
+
+            <!-- Recomendações -->
+            <div class="card recomendacoes">
+                <h2><i class="fas fa-tasks"></i> Recomendações</h2>
+                <ul id="listaRecomendacoes"></ul>
+            </div>
+        </div>
+
+        <!-- Controle de Irrigação -->
+        <div class="card irrigacao">
+            <h2><i class="fas fa-faucet"></i> Controle de Irrigação</h2>
+            <div class="irrigation-dashboard">
+                <!-- Status Geral -->
+                <div class="irrigation-status">
+                    <div class="status-circle active">
+                        <i class="fas fa-power-off"></i>
+                    </div>
+                    <span class="status-text">Sistema Ativo</span>
+                </div>
+
+                <!-- Zonas de Irrigação -->
+                <div class="irrigation-zones">
+                    <div class="irrigation-zone">
+                        <div class="zone-header">
+                            <h3>Zona 1 - Milho</h3>
+                            <span class="zone-area">50 ha</span>
+                        </div>
+
+                        <div class="zone-content">
+                            <div class="zone-status">
+                                <div class="moisture-indicator">
+                                    <div class="moisture-level" style="height: 65%"></div>
+                                </div>
+                                <span class="moisture-value">65%</span>
+                            </div>
+
+                            <div class="zone-controls">
+                                <label class="switch">
+                                    <input type="checkbox" checked>
+                                    <span class="slider"></span>
+                                </label>
+
+                                <div class="schedule-control">
+                                    <div class="time-input">
+                                        <i class="fas fa-clock"></i>
+                                        <input type="time" value="06:00">
+                                        <span>até</span>
+                                        <input type="time" value="07:00">
+                                    </div>
+                                    <div class="schedule-days">
+                                        <span class="day active">D</span>
+                                        <span class="day">S</span>
+                                        <span class="day active">T</span>
+                                        <span class="day">Q</span>
+                                        <span class="day active">Q</span>
+                                        <span class="day">S</span>
+                                        <span class="day">S</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Repita para outras zonas -->
+                </div>
+
+                <!-- Resumo de Recursos -->
+                <div class="irrigation-summary">
+                    <div class="summary-item">
+                        <i class="fas fa-tint"></i>
+                        <div class="summary-info">
+                            <span class="summary-value">1250</span>
+                            <span class="summary-label">L/hora</span>
+                        </div>
+                    </div>
+                    <div class="summary-item">
+                        <i class="fas fa-clock"></i>
+                        <div class="summary-info">
+                            <span class="summary-value">2.5</span>
+                            <span class="summary-label">hrs/dia</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    
+    <script src="script.js"></script>
+    <script src="market-dashboard.js"></script>
+</body>
+
+</html>
